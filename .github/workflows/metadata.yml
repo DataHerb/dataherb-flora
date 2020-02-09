@@ -32,6 +32,8 @@ jobs:
           mkdir -p $BUILD_FOLDER
           echo "Creating flora metadata."
           python agg/agg.py
+          echo "Create .nojekyll"
+          touch $BUILD_FOLDER/.nojekyll
       - name: git push flora.json to gh-pages
         uses: s0/git-publish-subdir-action@master
         env:
