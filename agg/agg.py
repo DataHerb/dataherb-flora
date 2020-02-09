@@ -1,6 +1,8 @@
 import json
 import logging
 import os
+import re
+
 import yaml
 
 from utils import get_page_html as _get_page_html
@@ -48,6 +50,7 @@ def flora_metadata(flora_files):
     """
 
     logger.debug("BEGIN: retrieve flora metadata")
+    re_herb_name = re.compile(r"(.+?)(\.[^.]*$|$)")
 
     flora_meta = {}
     for herb_name in flora_files:
@@ -55,7 +58,7 @@ def flora_metadata(flora_files):
             try:
                 herb = yaml.load(fp, Loader=yaml.FullLoader)
                 herb = herb[0]
-                flora_meta[herb_name] = herb
+                flora_meta[re_herb_name.findall(herb_name)[0][0]] = herb
                 logger.debug(herb)
             except Exception as e:
                 logger.warn(f"{herb_name} can not be loaded! \n{e}")
