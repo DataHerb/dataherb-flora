@@ -29,7 +29,7 @@ jobs:
         run: |
           BUILD_FOLDER=build
           echo "Creating folder $BUILD_FOLDER"
-          mkdir build
+          mkdir -p $BUILD_FOLDER
           echo "Creating flora metadata."
           python agg/agg.py
       - name: git push flora.json to gh-pages
