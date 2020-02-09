@@ -27,6 +27,13 @@ jobs:
         run: pip install -r requirements.txt
       - name: Create flora.json
         run: |
+          if [[ -f "build" ]]
+          then
+              echo "This file exists on your filesystem."
+          else:
+              mkdir build
+              echo "Created folder build"
+          fi
           FILE=build/flora.json
           if [ -f "$FILE" ]; then
               echo "$FILE exists. Will rewrite flora.json."
