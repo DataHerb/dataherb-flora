@@ -27,20 +27,11 @@ jobs:
         run: pip install -r requirements.txt
       - name: Create flora.json
         run: |
-          if [[ -f "build" ]]
-          then
-              echo "This file exists on your filesystem."
-          else:
-              mkdir build
-              echo "Created folder build"
-          fi
-          FILE=build/flora.json
-          if [ -f "$FILE" ]; then
-              echo "$FILE exists. Will rewrite flora.json."
-          else
-              echo "Begin to create flora metadata."
-              python agg/agg.py
-          fi
+          BUILD_FOLDER=build
+          echo "Creating folder $BUILD_FOLDER"
+          mkdir build
+          echo "Creating flora metadata."
+          python agg/agg.py
       - name: git push flora.json to gh-pages
         uses: s0/git-publish-subdir-action@master
         env:
