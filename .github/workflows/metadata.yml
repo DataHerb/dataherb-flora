@@ -35,7 +35,7 @@ jobs:
           echo "Creating .nojekyll"
           touch $BUILD_FOLDER/.nojekyll
           echo "All files in $BUILD_FOLDER"
-          ls -lht $BUILD_FOLDER
+          ls -alht $BUILD_FOLDER
       - name: git push flora.json to gh-pages
         uses: s0/git-publish-subdir-action@master
         env:
