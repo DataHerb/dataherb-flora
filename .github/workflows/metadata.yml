@@ -1,0 +1,40 @@
+name: CI Metadata Generation
+
+on:
+  schedule:
+    - cron: 0 * * * *
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Get current directory
+        run: pwd
+      - name: Get current files and status
+        run: |
+          ls
+          git status
+      - name: Install Python Requirements
+        run: pip install -r requirements.txt
+      - name: Create flora.json
+        run: |
+          FILE=build/flora.json
+          if [ -f "$FILE" ]; then
+              echo "$FILE exists. Will rewrite flora.json."
+          else
+              echo "Begin to create flora metadata."
+              python agg/agg.py
+          fi
+      - name: git push flora.json to gh-pages
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
