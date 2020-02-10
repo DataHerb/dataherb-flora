@@ -26,8 +26,10 @@ jobs:
       - name: Create flora.json
         run: |
           BUILD_FOLDER=build
+          JEKYLL_MD_FOLDER=_datasets
           echo "Creating folder $BUILD_FOLDER"
           mkdir -p $BUILD_FOLDER
+          mkdir -p $BUILD_FOLDER/$JEKYLL_MD_FOLDER
           echo "Creating flora metadata."
           python agg/agg.py
           echo "Creating .nojekyll"
