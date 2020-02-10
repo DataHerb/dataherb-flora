@@ -62,6 +62,6 @@ jobs:
       - name: Push changes to jekyll site
         uses: ad-m/github-push-action@master
         with:
-          repository: dataherb.github.io
+          repository: DataHerb/dataherb.github.io
           directory: dataherb.github.io
           github_token: ${{ secrets.ACCESS_TOKEN }}
