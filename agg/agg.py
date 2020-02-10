@@ -69,7 +69,7 @@ def flora_metadata(flora_files):
     return flora_meta
 
 
-def load_herb_metadata(herb_name, flora_herb_meta, container, herbs_to_fix=None):
+def load_herb_metadata(herb_name, flora_herb_meta):
     """
     load_herb_metadata loads the metadata of the herb using the specific repository in flora
 
@@ -77,8 +77,6 @@ def load_herb_metadata(herb_name, flora_herb_meta, container, herbs_to_fix=None)
     :param herb_name: str
     :param flora_herb_meta: a single herb metadata entry in flora
     :type flora_herb_meta: dict
-    :param container: dictionary to be updated to store the herb metadata
-    :type container: dict
     """
 
     logger.debug("BEGIN: retrieve flora metadata")
@@ -100,16 +98,29 @@ def load_herb_metadata(herb_name, flora_herb_meta, container, herbs_to_fix=None)
             **flora_herb_meta,
             **herb_repository_meta
         }
-        # assign the metadata to the herb name
-        container[herb_name] = flora_herb_meta
+        logger.debug("END: retrieve flora metadata")
+
+        return flora_herb_meta
 
     elif herb_repository_meta_response.get("status") == 404:
-        if herbs_to_fix is not None:
-            herbs_to_fix.append(herb_name)
-        else:
-            logger.warning(f"Could not find metadata for {herb_name} in specific repository {herb_repository}")
+        logger.warning(f"Could not find metadata for {herb_name} in specific repository {herb_repository}")
 
-    logger.debug("END: retrieve flora metadata")
+        return None
+
+
+def generate_markdown(herb_metadata):
+    """
+    generate_markdown creates markdown files for jekyll using metadata
+
+    :param herb_metadata: metadata of a herb
+    :type herb_metadata: dict
+    """
+
+    herb_metadata_jekyll = yaml.dump(herb_metadata)
+    herb_metadata_jekyll = "---\n{}\n---".format(herb_metadata_jekyll)
+
+    return herb_metadata_jekyll
+
 
 
 def main():
@@ -119,7 +130,17 @@ def main():
     herbs_to_fix = []
     flora = {}
     for herb_name, herb_meta in flora_meta.items():
-        load_herb_metadata(herb_name, herb_meta, flora, herbs_to_fix)
+        flora_herb_meta = load_herb_metadata(herb_name, herb_meta)
+        if not flora_herb_meta:
+            herbs_to_fix.append(herb_name)
+        else:
+            flora[herb_name] = flora_herb_meta
+            flora_herb_meta_jekyll = generate_markdown(flora_herb_meta)
+            with open(
+                os.path.join(__location__, '..', _FLORA_TRANSFORMED_FOLDER, f'{herb_name}.md'),
+                'w'
+            ) as fp:
+                fp.write(flora_herb_meta_jekyll)
 
     with open(
         os.path.join(__location__, '..', _FLORA_TRANSFORMED_FOLDER, 'flora.json'),
