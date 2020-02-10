@@ -16,6 +16,7 @@ __location__ = os.path.realpath(
 )
 _FLORA_BASE_FOLDER = "flora"
 _FLORA_TRANSFORMED_FOLDER = "build"
+_FLORA_JEKYLL_FOLDER = "_datasets"
 
 logger.debug(
     f"__cwd__ is {__cwd__}"
@@ -137,7 +138,7 @@ def main():
             flora[herb_name] = flora_herb_meta
             flora_herb_meta_jekyll = generate_markdown(flora_herb_meta)
             with open(
-                os.path.join(__location__, '..', _FLORA_TRANSFORMED_FOLDER, f'{herb_name}.md'),
+                os.path.join(__location__, '..', _FLORA_TRANSFORMED_FOLDER, _FLORA_JEKYLL_FOLDER, f'{herb_name}.md'),
                 'w'
             ) as fp:
                 fp.write(flora_herb_meta_jekyll)

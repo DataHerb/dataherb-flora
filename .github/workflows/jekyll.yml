@@ -44,20 +44,21 @@ jobs:
           echo "All files in $BUILD_FOLDER"
           ls -alht $BUILD_FOLDER
           pwd
-          mv $BUILD_FOLDER/$JEKYLL_MD_FOLDER ../$JEKYLL_MD_FOLDER
-          ls ../$JEKYLL_MD_FOLDER
+          ls -alht $BUILD_FOLDER/$JEKYLL_MD_FOLDER
       - name: Update Jekyll dataset files
-        working-directory: ./dataherb.github.io
         run: |
+          BUILD_FOLDER=build
           JEKYLL_MD_FOLDER=_datasets
+          cp dataherb-flora/$BUILD_FOLDER/$JEKYLL_MD_FOLDER/* dataherb.github.io/_datasets/
+          cd dataherb.github.io
           pwd
           ls
-          git status
-          cp ../$JEKYLL_MD_FOLDER/* _datasets/
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git status
           git add _datasets
           git commit -am "Update Datasets"
+          git status
       - name: Push changes to jekyll site
         uses: ad-m/github-push-action@master
         with:
