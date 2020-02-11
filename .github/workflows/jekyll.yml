@@ -13,10 +13,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          token: ${{ secrets.ACCESS_TOKEN }}
           path: dataherb-flora
       - name: update jekyll site
         uses: actions/checkout@v2
         with:
+          token: ${{ secrets.ACCESS_TOKEN }}
           repository: DataHerb/dataherb.github.io
           path: dataherb.github.io
       - name: Get current directory and files
