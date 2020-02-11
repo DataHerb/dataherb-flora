@@ -10,12 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout dataherb-flora
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           path: dataherb-flora
-      - name: update jekyll site
+      - name: Checkout dataherb-metadata-aggregator
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          repository: DataHerb/dataherb-metadata-aggregator
+          path: dataherb-metadata-aggregator
+      - name: Checkout dataherb.github.io
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
@@ -25,6 +31,11 @@ jobs:
         run: |
           pwd
           ls
+      - name: Copy Aggregator to flora repo
+        run: |
+          mkdir -p dataherb-flora/agg
+          cp dataherb-metadata-aggregator/agg/* dataherb-flora/agg
+          cp dataherb-metadata-aggregator/requirements.txt dataherb-flora/requirements.txt
       - uses: actions/setup-python@v1
         with:
           python-version: '3.x'
