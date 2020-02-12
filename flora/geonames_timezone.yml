@@ -1,0 +1,4 @@
+- name: geonames_timezone
+  repository: datumorphism/geonames-timezones
+  tags:
+      - Geo
