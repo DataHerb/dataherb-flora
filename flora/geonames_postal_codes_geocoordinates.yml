@@ -1,0 +1,4 @@
+- name: geonames postal codes and geocoordinates
+  repository: datumorphism/geonames-postal-codes-geocoordinates
+  tags:
+      - Geo
