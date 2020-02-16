@@ -48,7 +48,7 @@ jobs:
         working-directory: ./dataherb-flora
         run: |
           BUILD_FOLDER=build
-          JEKYLL_MD_FOLDER=_datasets
+          JEKYLL_MD_FOLDER=_flora
           echo "Creating folder $BUILD_FOLDER"
           mkdir -p $BUILD_FOLDER
           mkdir -p $BUILD_FOLDER/$JEKYLL_MD_FOLDER
@@ -60,19 +60,19 @@ jobs:
           ls -alht $BUILD_FOLDER
           pwd
           ls -alht $BUILD_FOLDER/$JEKYLL_MD_FOLDER
-      - name: Update Jekyll dataset files
+      - name: Update Jekyll flora files
         run: |
           BUILD_FOLDER=build
-          JEKYLL_MD_FOLDER=_datasets
-          cp dataherb-flora/$BUILD_FOLDER/$JEKYLL_MD_FOLDER/* dataherb.github.io/_datasets/
+          JEKYLL_MD_FOLDER=_flora
+          cp dataherb-flora/$BUILD_FOLDER/$JEKYLL_MD_FOLDER/* dataherb.github.io/$JEKYLL_MD_FOLDER/
           cd dataherb.github.io
           pwd
           ls
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git status
-          git add _datasets
-          git commit -am "Update Datasets"
+          git add _flora
+          git commit -m "Update Datasets" || echo "Nothing to update"
           git status
       - name: Push changes to jekyll site
         uses: ad-m/github-push-action@master
