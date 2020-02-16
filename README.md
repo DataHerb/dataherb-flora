@@ -38,7 +38,7 @@ This repository is being used for listing of datasets (Listings in DataHerb flor
 
 Simply create a `yml` file in the `flora` folder to link to your dataset repository. Your dataset repository should have a `.dataherb` folder and a `metadata.yml` file in it.
 
-The indexing part will be automatically done by [GitHub Actions](https://github.com/DataHerb/dataherb-flora/actions).
+The indexing part will be done by [GitHub Actions](https://github.com/DataHerb/dataherb-flora/actions).
 
 ## How is Everything Connected
 
