@@ -1,0 +1,4 @@
+- name: COVID-19 Timeseries of Confirmed, Death, and Recovered
+  repository: DataHerb/dataset-covid-19
+  tags:
+      - Health
