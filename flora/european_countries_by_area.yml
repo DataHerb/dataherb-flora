@@ -1,0 +1,4 @@
+- name: European Countries by Area
+  repository: datumorphism/dataset-european-countries
+  tags:
+      - Geo
