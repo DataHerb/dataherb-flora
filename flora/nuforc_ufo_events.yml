@@ -1,0 +1,4 @@
+- name: National UFO Reporting Center UFO Events
+  repository: DataHerb/nuforc-ufo-records
+  tags:
+      - MISC
