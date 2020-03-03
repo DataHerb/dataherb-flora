@@ -1,4 +1,4 @@
-- name: SARS-CoV-2-Germany
+- name: SARS-COV-2-Germany
   repository: DataHerb/sars-cov-2-germany
   tags:
       - Health
