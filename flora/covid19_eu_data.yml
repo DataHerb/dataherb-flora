@@ -1,0 +1,4 @@
+- name: COVID-19 EU Data by Country, State, and Date
+  repository: covid19-eu-zh/covid19-eu-data
+  tags:
+      - Health
