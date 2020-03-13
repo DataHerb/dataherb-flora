@@ -1,0 +1,4 @@
+- name: Geography Data of European Countries
+  repository: datumorphism/dataset-eu-geography-shapes
+  tags:
+      - Geo
