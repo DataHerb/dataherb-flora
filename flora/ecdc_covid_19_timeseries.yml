@@ -1,0 +1,4 @@
+- name: COVID-19 Timeseries of confirmed and death in the world by ECDC
+  repository: DataHerb/covid-19-ecdc
+  tags:
+      - Health
