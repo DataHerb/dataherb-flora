@@ -1,0 +1,4 @@
+- name: "Eurostats: Modal split of freight transport t2020_rk320 (% in total inland freight tonne-km) "
+  repository: datumorphism/dataset-eurostats-freight-modal-split
+  tags:
+      - Transportation
