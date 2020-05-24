@@ -1,4 +1,4 @@
 - name: "Eurostats: International quarterly road freight transport - goods loaded/unloaded in reporting country"
-  repository: datumorphism/dataset-eurostats-goods-load-unload
+  repository: datumorphism/dataset-eurostats-road-freight-goods-load-unload
   tags:
       - Transportation
