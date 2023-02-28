@@ -1,0 +1,5 @@
+- name: Biligual Keystroke Dynamics Dataset
+  repository: ntwaijry/BKSD
+  tags:
+    - Bilingual
+    - Keystroke Dynamics
