@@ -1,0 +1,7 @@
+name: Bilingual Keystroke Dynamics Dataset
+  repository: ntwaijry/BKSD
+  tags:
+    - Keystroke Dynamics
+    - Bilingual
+    - Arabic
+    - English
